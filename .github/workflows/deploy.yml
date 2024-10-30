@@ -14,17 +14,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '14' # Specify the Node.js version
-
+          node-version: '20' # Specify the Node.js version
+          cache: 'npm'
+      
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-
+        run: npm install
+  
+      - name: Run tests
+        run: npm test
+  
       - name: Build project
         run: npm run build
-
+  
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
