@@ -11,18 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - run: node --version
-      - run: npm --version
-      - uses: actions/checkout@v3
-      - run: npm install
-      - run: node spreadsheet.js
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: '14' # Specify the Node.js version
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -35,6 +30,11 @@ jobs:
         with:
           name: production-files
           path: ./dist
+
+      - name: Run Node server
+        run: |
+          # Run the server in the background
+          nohup node spreadsheet.js &
 
   deploy:
     name: Deploy
