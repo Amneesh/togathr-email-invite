@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - run: node --version
+      - run: npm --version
+      - run: npm install
+      - run: node spreadsheet.js
+
       - name: Checkout repo
         uses: actions/checkout@v3
 
