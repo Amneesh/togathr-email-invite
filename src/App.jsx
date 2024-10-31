@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import axios from 'axios';
+
 
 import './App.css'
 import { useLocation } from 'react-router-dom';
@@ -89,7 +87,8 @@ const handleSubmit = async (event) => {
   
 };
   return (
-    <div className='invitationForm'>
+    <>
+        <div className='invitationForm'>
     {formShow ?
         <form onSubmit={handleSubmit} className='invitation-form'>
 
@@ -133,6 +132,7 @@ const handleSubmit = async (event) => {
         {success && <p style={{ color: 'green' }}>{success}</p>}
     </div>
 </div>
+</>
   )
 }
 
