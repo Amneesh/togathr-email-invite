@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 
 import './App.css'
 import { useLocation } from 'react-router-dom';
-import {callServer} from '../backend/api.js'
+import {callServer} from '../backend/api.js';
+import togatherLogo from './resources/Logo/togatherLogo.png';
 function App() {
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -28,11 +29,11 @@ useEffect(() => {
 
 
 
-const emailChanger = (event) => {
-    setEmailParam(event.target.value);
-    setEmail(event.target.value);
+// const emailChanger = (event) => {
+//     setEmailParam(event.target.value);
+//     setEmail(event.target.value);
 
-}
+// }
 
 const handleSubmit = async (event) => {
     event.preventDefault();
@@ -88,14 +89,18 @@ const handleSubmit = async (event) => {
 };
   return (
     <>
+    <div>
+      <div className="container-img">
+        <img src={togatherLogo} alt="img" />
+      </div>
+    </div>
         <div className='invitationForm'>
     {formShow ?
         <form onSubmit={handleSubmit} className='invitation-form'>
 
-            <br />
-            <br />
-            <br />
-            <h1>Hey {name}, Please do the RSVP</h1>
+           
+            <h1>Hey {name} </h1>
+            <h2> Please do the RSVP</h2>
             {/* <label>
                 Name:
                 <input
@@ -105,14 +110,14 @@ const handleSubmit = async (event) => {
                 />
             </label> */}
             <br />
-            <label>
+            {/* <label>
                 Email:
                 <input
                     type="email"
                     value={email || ''}
                     onChange={emailChanger}
                 />
-            </label>
+            </label> */}
             <br />
 
 
@@ -128,8 +133,8 @@ const handleSubmit = async (event) => {
         : <></>}
 
     <div className='message-confirmation'>
-        {error && <p style={{ color: 'red' }}>{error}. Please try again.</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
+        {error && <h2 className='error-message' >{error}. Please try again.</h2>}
+        {success && <h2 className='success-message'>{success}</h2>}
     </div>
 </div>
 </>
